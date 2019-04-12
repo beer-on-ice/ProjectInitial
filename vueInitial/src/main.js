@@ -13,7 +13,7 @@ import './assets/iconfont/iconfont.css'
 import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/display.css'
 
-// 引入rem插件(适用非响应式布局)
+// 引入rem插件(适用非响应式布局,如要兼容pc，设置node_modules/lib-flexible/文件里72行为 54->width)
 import 'lib-flexible/flexible.js'
 
 Vue.config.productionTip = false
