@@ -11,8 +11,9 @@ import './assets/iconfont/iconfont.css'
 
 // 引入elementUI
 import './plugins/element.js'
+import 'element-ui/lib/theme-chalk/display.css'
 
-// 引入rem插件
+// 引入rem插件(适用非响应式布局)
 import 'lib-flexible/flexible.js'
 
 Vue.config.productionTip = false

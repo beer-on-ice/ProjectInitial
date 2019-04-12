@@ -6652,6 +6652,14 @@ postcss-px2rem-exclude@^0.0.6:
     postcss "^5.0.0"
     px2rem "~0.5.0"
 
+postcss-px2rem@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/postcss-px2rem/-/postcss-px2rem-0.3.0.tgz#0dfa4e8a268fa7478273f0c4b47c619834894041"
+  integrity sha1-DfpOiiaPp0eCc/DEtHxhmDSJQEE=
+  dependencies:
+    postcss "^5.0.0"
+    px2rem "~0.5.0"
+
 postcss-reduce-initial@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/postcss-reduce-initial/-/postcss-reduce-initial-4.0.3.tgz#7fd42ebea5e9c814609639e2c2e84ae270ba48df"
@@ -8774,6 +8782,11 @@ wcwidth@^1.0.1:
   integrity sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=
   dependencies:
     defaults "^1.0.3"
+
+web-storage-cache@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/web-storage-cache/-/web-storage-cache-1.0.3.tgz#2eecc4f1f88c9c3c4c185381c9fdf5fe8d0c908c"
+  integrity sha1-LuzE8fiMnDxMGFOByf31/o0MkIw=
 
 webpack-bundle-analyzer@^3.0.4:
   version "3.1.0"

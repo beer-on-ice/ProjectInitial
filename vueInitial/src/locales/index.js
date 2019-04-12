@@ -6,6 +6,7 @@ import cn from './cn'
 import en from './en'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
+import { getLocale, saveLocale } from 'utils/localStorage'
 
 Vue.use(VueI18N)
 
@@ -20,8 +21,13 @@ const messages = {
   }
 }
 
+let locale = getLocale()
+if (!locale) {
+  locale = 'cn'
+  saveLocale(locale)
+}
 const i18n = new VueI18N({
-  locale: 'cn',
+  locale,
   messages
 })
 
