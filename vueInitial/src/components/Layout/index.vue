@@ -4,17 +4,12 @@
     el-container
       el-aside(width='200px') Aside
       el-main
-        Home
+        router-view
     el-footer Footer
 </template>
 
 <script>
-import Home from 'pages/home'
-export default {
-	components: {
-		Home
-	}
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>

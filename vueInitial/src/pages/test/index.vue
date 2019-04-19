@@ -1,5 +1,7 @@
 <template lang="pug">
-div {{$t('test.title')}}
+div test page 1
+  div {{$t('test.title')}}
+  svg-icon(icon-class="apple")
 </template>
 
 <script>
