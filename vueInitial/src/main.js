@@ -20,8 +20,9 @@ import 'lib-flexible/flexible.js'
 import './assets/icons'
 
 // 引入请求方法,倒入 http 文件夹下的 index.js
-import api from './utils/http/index'
+import api from './utils/http'
 Vue.use(api)
+
 Vue.config.productionTip = false
 
 const router = new Router()

@@ -8,7 +8,6 @@ import axios from './api' // 倒入 api
 export const mock = params => {
   return axios({
     url: '/mock',
-    method: 'get',
     params
   })
 }
@@ -21,8 +20,23 @@ export const upload = data => {
   })
 }
 
+export const proxy = data => {
+  return axios({
+    url: 'proxy',
+    data
+  })
+}
+
+export const restfuls = data => {
+  return axios({
+    url: `/restful/:${data.id}/list`
+  })
+}
+
 // 默认全部倒出
 export default {
   mock,
-  upload
+  upload,
+  restfuls,
+  proxy
 }

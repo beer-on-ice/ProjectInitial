@@ -5,7 +5,9 @@ div Home
 <script>
 export default {
   mounted () {
-    this.$api.upload().then(res => console.log(res))
+    this.$api.upload({ s: 1 }).then(res => console.log(res))
+    this.$api.proxy({ s: 1 }).then(res => console.log(res))
+    this.$api.restfuls({ id: 1 }).then(res => console.log(res))
   }
 }
 </script>
