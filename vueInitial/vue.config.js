@@ -5,9 +5,11 @@ module.exports = {
   publicPath: isDev ? '/' : './',
   chainWebpack: config => {
     config.resolve.alias
+      .set('@$', resolve('src'))
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))
       .set('pages', resolve('src/pages'))
+      .set('layouts', resolve('src/layouts'))
     config.module
       .rule('pug')
       .test(/\.pug$/)
@@ -16,16 +18,16 @@ module.exports = {
       .end()
   },
   devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001/',
-        changeOrigin: true,
-        ws: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:3001/',
+    //     changeOrigin: true,
+    //     ws: true,
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     }
+    //   }
+    // }
   }
 }
 

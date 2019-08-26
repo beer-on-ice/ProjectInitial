@@ -1,5 +1,6 @@
 <template lang="pug">
-  div home123
+  el-container
+    router-view
 </template>
 
 <script>
