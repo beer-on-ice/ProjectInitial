@@ -1,7 +1,6 @@
 <template lang="pug">
-div test page 1
-  div {{$t('test.title')}}
-  svg-icon(icon-class="apple")
+  el-container
+    router-view
 </template>
 
 <script>

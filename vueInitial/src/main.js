@@ -11,16 +11,20 @@ import './assets/iconfonts/iconfont.css'
 
 // 引入elementUI
 import './plugins/element.js'
-import 'element-ui/lib/theme-chalk/display.css'
+
+// 引入iviewUI
+import './plugins/iview.js'
 
 // 引入rem插件(适用非响应式布局,如要兼容pc，设置node_modules/lib-flexible/文件里72行为 54->width)
+// 同时修改 postcss.config.js里到合适自己的
 import 'lib-flexible/flexible.js'
 
 // 引入svg处理
-import './assets/icons'
+// import './assets/icons'
 
 // 引入请求方法,倒入 http 文件夹下的 index.js
 import api from './utils/http'
+
 Vue.use(api)
 
 Vue.config.productionTip = false

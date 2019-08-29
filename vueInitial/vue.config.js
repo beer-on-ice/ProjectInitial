@@ -17,6 +17,7 @@ module.exports = {
   },
   chainWebpack: config => {
     config.resolve.alias
+      .set('@$', resolve('src'))
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))
       .set('pages', resolve('src/pages'))
@@ -42,18 +43,32 @@ module.exports = {
     imagesRule.exclude.add(resolve('src/assets/icons/svg'))
     config.module.rule('images').test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
   },
-  devServer: {
-    // disableHostCheck: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001/',
-        changeOrigin: true,
-        ws: true,
-        pathRewrite: {
-          '^/api': ''
-        }
+  // 警告 webpack 的性能提示
+  configureWebpack: {
+    performance: {
+      hints: 'warning',
+      // 入口起点的最大体积 整数类型（以字节为单位）
+      maxEntrypointSize: 50000000,
+      // 生成文件的最大体积 整数类型（以字节为单位 300k）
+      maxAssetSize: 30000000,
+      // 只给出 js 文件的性能提示
+      assetFilter: function (assetFilename) {
+        return assetFilename.endsWith('.js')
       }
     }
+  },
+  devServer: {
+    // disableHostCheck: true,
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:3001/',
+    //     changeOrigin: true,
+    //     ws: true,
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     }
+    //   }
+    // }
   }
 }
 

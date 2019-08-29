@@ -1,7 +1,7 @@
 export default {
   method: 'get',
   // 基础url前缀
-  baseURL: 'https://easy-mock.com/mock/5d130daa815114066cb6a797/example',
+  baseURL: process.env.VUE_APP_API_BASE_URL,
   // 请求头信息
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'
