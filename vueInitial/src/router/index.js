@@ -6,7 +6,7 @@ Vue.use(Router)
 
 export default () => {
   return new Router({
-    mode: 'history',
+    // mode: 'history',
     routes
   })
 }

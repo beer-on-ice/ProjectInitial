@@ -1,8 +1,10 @@
+const TerserPlugin = require('terser-webpack-plugin')
+
 const path = require('path')
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  publicPath: isDev ? '/' : './',
+  publicPath: !isDev ? '/' : './',
   css: {
     loaderOptions: {
       css: {},
@@ -55,6 +57,20 @@ module.exports = {
       assetFilter: function (assetFilename) {
         return assetFilename.endsWith('.js')
       }
+    },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              warnings: false,
+              drop_console: true,
+              drop_debugger: true,
+              pure_funcs: ['console.log']
+            }
+          }
+        })
+      ]
     }
   },
   devServer: {

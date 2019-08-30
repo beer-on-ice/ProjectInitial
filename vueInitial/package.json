@@ -39,6 +39,7 @@
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
+    "terser-webpack-plugin": "^1.4.1",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-cli-plugin-iview": "^1.0.6",
     "vue-template-compiler": "^2.5.21"

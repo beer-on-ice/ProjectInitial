@@ -8,10 +8,10 @@ import actions from './actions/actions'
 
 Vue.use(Vuex)
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'production'
 export default () => {
   return new Vuex.Store({
-    strict: !isDev, // 是否能直接修改state值，而不通过mutations
+    strict: isDev, // 是否能直接修改state值，而不通过mutations
     state: defaultState,
     mutations,
     actions,
