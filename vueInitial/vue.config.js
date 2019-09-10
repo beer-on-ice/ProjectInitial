@@ -4,19 +4,10 @@ const path = require('path')
 const isDev = process.env.NODE_ENV === 'production'
 
 module.exports = {
+  // 输出文件目录
   publicPath: !isDev ? '/' : './',
-  css: {
-    loaderOptions: {
-      css: {},
-      postcss: {
-        plugins: [
-          require('postcss-px2rem')({
-            remUnit: 144
-          })
-        ]
-      }
-    }
-  },
+  // eslint-loader 是否在保存的时候检查
+  lintOnSave: true,
   chainWebpack: config => {
     config.resolve.alias
       .set('@$', resolve('src'))
@@ -24,6 +15,7 @@ module.exports = {
       .set('components', resolve('src/components'))
       .set('pages', resolve('src/pages'))
       .set('utils', resolve('src/utils'))
+      .set('config', resolve('src/config'))
     config.module
       .rule('pug')
       .test(/\.pug$/)
@@ -85,6 +77,19 @@ module.exports = {
     //     }
     //   }
     // }
+  },
+  // css相关配置
+  css: {
+    loaderOptions: {
+      css: {},
+      postcss: {
+        plugins: [
+          require('postcss-px2rem')({
+            remUnit: 144
+          })
+        ]
+      }
+    }
   }
 }
 
