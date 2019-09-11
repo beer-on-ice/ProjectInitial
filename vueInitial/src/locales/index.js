@@ -6,7 +6,7 @@ import cn from './cn'
 import en from './en'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
-import { getLocale, saveLocale } from 'utils/localStorage'
+import { getLocale, saveLocale } from '@utils/localStorage'
 
 Vue.use(VueI18N)
 

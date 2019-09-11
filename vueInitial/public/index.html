@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>雾山</title>
+    <!-- 使用CDN的CSS文件 -->
+    <% for (var i in htmlWebpackPlugin.options.cdn &&
+    htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
+    <% } %>
   </head>
   <body>
     <noscript>
@@ -14,5 +19,12 @@
       >
     </noscript>
     <div id="app"></div>
+    <% for (var i in htmlWebpackPlugin.options.cdn &&
+    htmlWebpackPlugin.options.cdn.js) { %>
+    <script
+      type="text/javascript"
+      src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"
+    ></script>
+    <% } %>
   </body>
 </html>

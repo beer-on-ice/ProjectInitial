@@ -1,5 +1,8 @@
 <template lang="pug">
 div {{$t('test.title')}}
+  //- svg-icon(iconClass="apple")
+  ul
+    li 1
 </template>
 
 <script>
@@ -12,4 +15,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+li {
+	font-size: $width;
+}
 </style>

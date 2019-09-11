@@ -1,4 +1,4 @@
-import axios from 'utils/http/api' // 倒入 api
+import axios from '@utils/http/api' // 倒入 api
 
 // 单独倒出
 export const mock = params => {
