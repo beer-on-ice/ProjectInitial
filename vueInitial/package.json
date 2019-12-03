@@ -36,6 +36,8 @@
     "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^3.0.0",
     "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "gifsicle": "^4.0.1",
     "glob-all": "^3.1.0",
@@ -46,6 +48,7 @@
     "node-sass": "^4.9.0",
     "postcss-px2rem-exclude": "^0.0.6",
     "prerender-spa-plugin": "^3.4.0",
+    "prettier": "^1.19.1",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "purgecss-webpack-plugin": "^1.5.0",
@@ -65,12 +68,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{css,md}": [
-      "git add"
-    ]
+    "*.{js,jsx,vue}": ["prettier --write", "eslint --fix", "git add"],
+    "*.{css,md}": ["prettier --write", "git add"]
   }
 }
