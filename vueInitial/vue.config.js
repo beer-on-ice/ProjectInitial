@@ -163,7 +163,10 @@ module.exports = {
       // 根据入口起点的最大体积，控制webpack何时生成性能提示,整数类型,以字节为单位
       maxEntrypointSize: 5000000,
       // 最大单个资源体积，默认250000 (bytes)
-      maxAssetSize: 3000000
+      maxAssetSize: 3000000,
+      assetFilter: assetFilename => {
+        return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
+      }
     }
   },
   chainWebpack: config => {
