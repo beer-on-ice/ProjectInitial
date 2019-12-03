@@ -108,10 +108,10 @@ module.exports = {
       )
 
       /*
-        * 预渲染
-        * 需要修改routes/index.js 的 mode 为 history
-        *  在下方 routes: [] 里加入需要预渲染的
-      */
+       * 预渲染
+       * 需要修改 routes/index.js 的 mode 为 history
+       *  在下方 routes: [] 里加入需要预渲染的
+       */
       plugins.push(
         new PrerenderSpaPlugin({
           // 这个目录只能有一级，如果目录层次大于一级，在生成的时候不会有任何错误提示，在预渲染的时候只会卡着不动
@@ -120,15 +120,9 @@ module.exports = {
           routes: ['/about'],
           postProcess (ctx) {
             ctx.route = ctx.originalRoute
-            ctx.html = ctx.html
-              .split(/>[\s]+</gim)
-              .join('><')
+            ctx.html = ctx.html.split(/>[\s]+</gim).join('><')
             if (ctx.route.endsWith('.html')) {
-              ctx.outputPath = path.join(
-                __dirname,
-                'dist',
-                ctx.route
-              )
+              ctx.outputPath = path.join(__dirname, 'dist', ctx.route)
             }
             return ctx
           },
@@ -138,30 +132,39 @@ module.exports = {
             decodeEntities: true,
             keepClosingSlash: true,
             sortAttributes: true
-          },
-          renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
-            // 需要注入一个值，这样就可以检测页面当前是否是预渲染的
-            inject: {
-              foo: 'bar'
-            },
-            headless: false,
-            // 视图组件是在API请求获取所有必要数据后呈现的，因此我们在dom中存在“data view”属性后创建页面快照
-            renderAfterDocumentEvent: 'render-event'
-            // renderAfterTime: 5000,
-            // renderAfterElementExists: 'my-app-element'
-          })
+          }
+          // renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+          //   // 需要注入一个值，这样就可以检测页面当前是否是预渲染的
+          //   inject: {
+          //     foo: 'bar'
+          //   },
+          //   headless: false,
+          //   // 视图组件是在API请求获取所有必要数据后呈现的，因此我们在dom中存在“data view”属性后创建页面快照
+          //   renderAfterDocumentEvent: 'render-event'
+          //   // renderAfterTime: 5000,
+          //   // renderAfterElementExists: 'my-app-element'
+          // })
         })
       )
     }
+
     // cdn - 使用cdn文件
-    config.externals = {
-      'vue': 'Vue',
-      'element-ui': 'ELEMENT',
-      'vue-router': 'VueRouter',
-      'vuex': 'Vuex',
-      'axios': 'axios'
-    }
+    // config.externals = {
+    //   vue: 'Vue',
+    //   vuex: 'Vuex',
+    //   'vue-router': 'VueRouter',
+    //   axios: 'axios'
+    // }
+
     config.plugins = [...config.plugins, ...plugins]
+    config.performance = {
+      // false | "error" | "warning" // 不显示性能提示 | 以错误形式提示 | 以警告...
+      hints: 'warning',
+      // 根据入口起点的最大体积，控制webpack何时生成性能提示,整数类型,以字节为单位
+      maxEntrypointSize: 5000000,
+      // 最大单个资源体积，默认250000 (bytes)
+      maxAssetSize: 3000000
+    }
   },
   chainWebpack: config => {
     // 修复HMR
@@ -173,26 +176,24 @@ module.exports = {
       .use(
         new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn$/)
       )
-    config
-      .plugin('loadshReplace')
-      .use(new LodashModuleReplacementPlugin())
+    config.plugin('loadshReplace').use(new LodashModuleReplacementPlugin())
 
     // cdn - html中添加
-    const cdn = {
-      // 访问https://unpkg.com/element-ui/lib/theme-chalk/index.css获取最新版本
-      css: ['//unpkg.com/element-ui@2.10.1/lib/theme-chalk/index.css'],
-      js: [
-        '//unpkg.com/vue@2.6.10/dist/vue.min.js', // 访问https://unpkg.com/vue/dist/vue.min.js获取最新版本
-        '//unpkg.com/vue-router@3.0.6/dist/vue-router.min.js',
-        '//unpkg.com/vuex@3.1.1/dist/vuex.min.js',
-        '//unpkg.com/axios@0.19.0/dist/axios.min.js',
-        '//unpkg.com/element-ui@2.10.1/lib/index.js'
-      ]
-    }
-    config.plugin('html').tap(args => {
-      args[0].cdn = cdn
-      return args
-    })
+    // const cdn = {
+    //   // 访问https://unpkg.com/element-ui/lib/theme-chalk/index.css获取最新版本
+    //   css: ['//unpkg.com/element-ui@2.10.1/lib/theme-chalk/index.css'],
+    //   js: [
+    //     '//unpkg.com/vue@2.6.10/dist/vue.min.js',
+    //     '//unpkg.com/vue-router@3.0.6/dist/vue-router.min.js',
+    //     '//unpkg.com/vuex@3.1.1/dist/vuex.min.js',
+    //     '//unpkg.com/axios@0.19.0/dist/axios.min.js',
+    //     '//unpkg.com/element-ui@2.10.1/lib/index.js'
+    //   ]
+    // }
+    // config.plugin('html').tap(args => {
+    //   args[0].cdn = cdn
+    //   return args
+    // })
 
     // 添加别名
     config.resolve.alias
@@ -291,15 +292,15 @@ module.exports = {
   parallel: require('os').cpus().length > 1,
   pwa: {},
   devServer: {
+    open: true, // 是否打开浏览器
+    hotOnly: true, // 热更新
     // overlay: { // 让浏览器 overlay 同时显示警告和错误
     //   warnings: true,
     //   errors: true
     // },
-    // open: true, // 是否打开浏览器
     // host: "localhost",
     // port: "8080", // 代理端口
     // https: false,
-    // hotOnly: false, // 热更新
     proxy: {
       '/api': {
         target: 'http://www.baidu.com/',
