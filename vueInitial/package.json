@@ -39,7 +39,9 @@
     "eslint-plugin-vue": "^5.0.0",
     "gifsicle": "^4.0.1",
     "glob-all": "^3.1.0",
+    "husky": "^3.1.0",
     "image-webpack-loader": "^6.0.0",
+    "lint-staged": "^9.5.0",
     "lodash-webpack-plugin": "^0.11.5",
     "node-sass": "^4.9.0",
     "postcss-px2rem-exclude": "^0.0.6",
@@ -63,7 +65,12 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": ["eslint --fix", "git add"],
-    "*.{css,md}": ["git add"]
+    "*.{js,jsx,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{css,md}": [
+      "git add"
+    ]
   }
 }
