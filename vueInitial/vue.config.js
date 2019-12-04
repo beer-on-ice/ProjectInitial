@@ -2,16 +2,16 @@
 const path = require('path')
 const webpack = require('webpack')
 const glob = require('glob-all')
-const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const zopfli = require('@gfx/zopfli')
 const BrotliPlugin = require('brotli-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
 
-const PurgecssPlugin = require('purgecss-webpack-plugin')
+// const PrerenderSpaPlugin = require('prerender-spa-plugin')
 // const SpritesmithPlugin = require('webpack-spritesmith')
 // const AliOssPlugin = require('webpack-oss')
 
@@ -112,40 +112,40 @@ module.exports = {
        * 需要修改 routes/index.js 的 mode 为 history
        *  在下方 routes: [] 里加入需要预渲染的
        */
-      plugins.push(
-        new PrerenderSpaPlugin({
-          // 这个目录只能有一级，如果目录层次大于一级，在生成的时候不会有任何错误提示，在预渲染的时候只会卡着不动
-          staticDir: resolve('dist'),
-          // 对应自己的路由文件，比如a有参数，就需要写成 /a/param1。
-          routes: ['/about'],
-          postProcess (ctx) {
-            ctx.route = ctx.originalRoute
-            ctx.html = ctx.html.split(/>[\s]+</gim).join('><')
-            if (ctx.route.endsWith('.html')) {
-              ctx.outputPath = path.join(__dirname, 'dist', ctx.route)
-            }
-            return ctx
-          },
-          minify: {
-            collapseBooleanAttributes: true,
-            collapseWhitespace: true,
-            decodeEntities: true,
-            keepClosingSlash: true,
-            sortAttributes: true
-          }
-          // renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
-          //   // 需要注入一个值，这样就可以检测页面当前是否是预渲染的
-          //   inject: {
-          //     foo: 'bar'
-          //   },
-          //   headless: false,
-          //   // 视图组件是在API请求获取所有必要数据后呈现的，因此我们在dom中存在“data view”属性后创建页面快照
-          //   renderAfterDocumentEvent: 'render-event'
-          //   // renderAfterTime: 5000,
-          //   // renderAfterElementExists: 'my-app-element'
-          // })
-        })
-      )
+      // plugins.push(
+      //   new PrerenderSpaPlugin({
+      //     // 这个目录只能有一级，如果目录层次大于一级，在生成的时候不会有任何错误提示，在预渲染的时候只会卡着不动
+      //     staticDir: resolve('dist'),
+      //     // 对应自己的路由文件，比如a有参数，就需要写成 /a/param1。
+      //     routes: ['/about'],
+      //     postProcess(ctx) {
+      //       ctx.route = ctx.originalRoute
+      //       ctx.html = ctx.html.split(/>[\s]+</gim).join('><')
+      //       if (ctx.route.endsWith('.html')) {
+      //         ctx.outputPath = path.join(__dirname, 'dist', ctx.route)
+      //       }
+      //       return ctx
+      //     },
+      //     minify: {
+      //       collapseBooleanAttributes: true,
+      //       collapseWhitespace: true,
+      //       decodeEntities: true,
+      //       keepClosingSlash: true,
+      //       sortAttributes: true
+      //     }
+      //     // renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+      //     //   // 需要注入一个值，这样就可以检测页面当前是否是预渲染的
+      //     //   inject: {
+      //     //     foo: 'bar'
+      //     //   },
+      //     //   headless: false,
+      //     //   // 视图组件是在API请求获取所有必要数据后呈现的，因此我们在dom中存在“data view”属性后创建页面快照
+      //     //   renderAfterDocumentEvent: 'render-event'
+      //     //   // renderAfterTime: 5000,
+      //     //   // renderAfterElementExists: 'my-app-element'
+      //     // })
+      //   })
+      // )
     }
 
     // cdn - 使用cdn文件
