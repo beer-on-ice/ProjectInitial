@@ -7,12 +7,12 @@ import qs from 'qs' // 序列化请求数据，视服务端的要求
 // }
 
 const toLogin = () => {
-  window._router.replace({
+  ;(window as any)._router.replace({
     path: '/login'
   })
 }
 
-const errorHandle = response => {
+const errorHandle = (response) => {
   const { status, statusText } = response
   let errorInfo = ''
   switch (status) {
@@ -75,7 +75,7 @@ export default function $axios(options) {
 
     // request 拦截器
     instance.interceptors.request.use(
-      config => {
+      (config: any) => {
         /*
          * Tip: 1 请求开始的时候可以结合 vuex 开启全屏的 loading 动画
          */
@@ -85,7 +85,7 @@ export default function $axios(options) {
          * if (store.getters.token) {
          *     config.headers['token'] = getCookie('TOKEN')
          * } else {
-         *  window._route.push({
+         *  (<any>window)._route.push({
          *    path: '/login'
          *  })
          * }
@@ -111,7 +111,7 @@ export default function $axios(options) {
           if (contentType) {
             if (contentType.includes('multipart')) {
               // 类型 'multipart/form-data;'
-              config.data = config.data
+              config.data = { ...config.data }
             } else if (contentType.includes('json')) {
               // 类型 'application/json;' , 服务器收到的raw body(原始数据) "{name:"nowThen",age:"18"}"（普通字符串）
               config.data = JSON.stringify(config.data)
@@ -124,18 +124,15 @@ export default function $axios(options) {
 
         return Promise.resolve(config)
       },
-      err => {
+      (err) => {
         return Promise.reject(err) // 在调用的那边可以拿到(catch)你想返回的错误信息
       }
     )
 
     // response 拦截器
     instance.interceptors.response.use(
-      res =>
-        res.status === 200
-          ? Promise.resolve(res.data)
-          : Promise.reject(errorHandle(res)),
-      err => {
+      (res) => (res.status === 200 ? Promise.resolve(res.data) : Promise.reject(errorHandle(res))),
+      (err) => {
         const { response } = err
         if (response) {
           // 请求已发出，但是不在2xx的范围
@@ -147,11 +144,11 @@ export default function $axios(options) {
 
     // 请求处理
     instance(options)
-      .then(res => {
+      .then((res) => {
         resolve(res)
         return false
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error)
       })
   })

@@ -1,5 +1,5 @@
 export default {
-  singer (state) {
+  singer(state) {
     return state.singer
   }
 }

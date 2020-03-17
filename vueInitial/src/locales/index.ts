@@ -22,9 +22,11 @@ if (!locale) {
   saveLocale(locale)
 }
 
-export default () => {
+const I18N: Function = () => {
   return new VueI18N({
     locale,
     messages
   })
 }
+
+export default I18N

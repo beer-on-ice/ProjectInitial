@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: {
+    es6: true,
     node: true
   },
   extends: [
@@ -11,7 +12,6 @@ module.exports = {
     '@vue/prettier/@typescript-eslint'
   ],
   parserOptions: {
-    parser: 'babel-eslint',
     ecmaVersion: 2020
   },
   rules: {

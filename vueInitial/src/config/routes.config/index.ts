@@ -8,10 +8,8 @@ export default [
       {
         path: '/home',
         title: '热烈欢迎',
-        component: resolve =>
-          import(
-            /* webpackChunkName: "home" */ '@/views/Home.vue'
-          ).then(module => resolve(module))
+        component: (resolve) =>
+          import(/* webpackChunkName: "home" */ '@/views/Home.vue').then((module) => resolve(module))
       }
     ]
   }

@@ -45,23 +45,8 @@
     "pug-plain-loader": "^1.0.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "ts-loader": "^6.2.1",
     "typescript": "~3.7.5",
     "vue-template-compiler": "^2.6.11"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{css,md}": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }

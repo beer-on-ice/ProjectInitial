@@ -8412,8 +8412,8 @@ tryer@^1.0.1:
 
 ts-loader@^6.2.1:
   version "6.2.1"
-  resolved "https://registry.npm.taobao.org/ts-loader/download/ts-loader-6.2.1.tgz#67939d5772e8a8c6bdaf6277ca023a4812da02ef"
-  integrity sha1-Z5OdV3LoqMa9r2J3ygI6SBLaAu8=
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.2.1.tgz#67939d5772e8a8c6bdaf6277ca023a4812da02ef"
+  integrity sha512-Dd9FekWuABGgjE1g0TlQJ+4dFUfYGbYcs52/HQObE0ZmUNjQlmLAS7xXsSzy23AMaMwipsx5sNHvoEpT2CZq1g==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"

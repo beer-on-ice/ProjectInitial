@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { Button, notification } from "ant-design-vue";
-import { mock } from "@/config/apiList/home";
+import { Button, notification } from 'ant-design-vue'
+import { mock } from '@/config/apiList/home'
 export default {
-  name: "Home",
+  name: 'Home',
   components: { Button },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
     async getData() {
@@ -19,19 +19,19 @@ export default {
       try {
         const res = await mock({
           id: 1
-        });
-        const { code, data, msg } = res;
+        })
+        const { code, data, msg } = res
         if (code === 200) {
-          console.log("请求成功", data);
+          console.log('请求成功', data)
         } else {
-          throw new Error(msg);
+          throw new Error(msg)
         }
       } catch ({ message }) {
-        notification.error({ message });
+        notification.error({ message })
       }
     }
   }
-};
+}
 </script>
 
 <style lang="stylus">
