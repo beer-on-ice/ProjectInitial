@@ -1,7 +1,7 @@
-import axios from '@/utils/http/api' // 倒入 api
+import axios from '@/utils/request/request' // 倒入 api
 
 // 单独倒出
-export const mock = (params) => {
+export const mock = (params: any) => {
   return axios({
     url: '/backend/getReportByList',
     method: 'get',
@@ -9,7 +9,7 @@ export const mock = (params) => {
   })
 }
 
-export const upload = (data) => {
+export const upload = (data: any) => {
   return axios({
     url: '/upload',
     method: 'post',
@@ -17,7 +17,7 @@ export const upload = (data) => {
   })
 }
 
-export const proxy = (data) => {
+export const proxy = (data: any) => {
   return axios({
     url: 'proxy',
     method: 'post',

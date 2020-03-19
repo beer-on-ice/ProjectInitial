@@ -6,7 +6,7 @@
 
 <script>
 import { Button, notification } from 'ant-design-vue'
-import { mock } from '@/config/apiList/home'
+import { mock } from '@/api/home'
 export default {
   name: 'Home',
   components: { Button },
@@ -36,7 +36,7 @@ export default {
 
 <style lang="stylus">
 // 引入styl文件示例
-// @import '~@/assets/styles/_variables.styl'
+// @import '~@/styles/_variables.styl'
 .home
 	div
 		color $main_color

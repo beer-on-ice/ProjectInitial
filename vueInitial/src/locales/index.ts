@@ -3,7 +3,7 @@ import VueI18N from 'vue-i18n'
 
 import cn from './cn'
 import en from './en'
-import { getLocale, saveLocale } from '@/utils/localStorage'
+import { getLocale, saveLocale } from '@/utils/storage/localStorage'
 
 Vue.use(VueI18N)
 

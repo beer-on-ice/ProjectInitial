@@ -1,6 +1,7 @@
+import { AxiosResponse, AxiosRequestConfig } from 'axios'
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 
-export default {
+const axiosConfig: AxiosRequestConfig = {
   method: 'get',
   // 基础url前缀
   baseURL: IS_PROD ? process.env.VUE_APP_API_BASE_URL : '/api', //根据自己配置的反向代理去设置不同环境的baeUrl
@@ -9,6 +10,12 @@ export default {
     Accept: 'application/json',
     'Content-Type': 'application/json;charset=UTF-8'
   },
+  // 请求后的数据处理
+  transformResponse: [
+    function(data: AxiosResponse) {
+      return data
+    }
+  ],
   // 参数
   data: {},
   // 设置超时时间
@@ -18,3 +25,5 @@ export default {
   // 返回数据类型
   responseType: 'json'
 }
+
+export default axiosConfig

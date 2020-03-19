@@ -5,7 +5,7 @@ import createRouter from './router'
 import createStore from './store'
 
 // 引入全局样式
-import './assets/styles/index.styl'
+import './styles/index.styl'
 
 // 引入iconfont全局样式
 import './assets/iconfonts/iconfont.css'
@@ -14,16 +14,13 @@ import './assets/iconfonts/iconfont.css'
 import './plugins/antd.ts'
 
 // 引入请求方法
-import VueAxios from './utils/http'
-
-// 注入全局过滤器
-import filters from './filters/index'
+import VueAxios from './utils/request'
 
 const i18n = createI18n()
 const router = createRouter()
 const store = createStore()
-;(window as any)._router = router
 
+window._router = router
 // 全局路由钩子函数 对全局有效
 // router.beforeEach((to, from, next) => {
 //   let auth = to.meta.auth
@@ -45,10 +42,6 @@ const store = createStore()
 //     next()
 //   }
 // })
-
-Object.keys(filters).forEach((item) => {
-  Vue.filter(item, filters[item])
-})
 
 Vue.use(VueAxios)
 

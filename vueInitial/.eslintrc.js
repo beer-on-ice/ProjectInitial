@@ -15,9 +15,11 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
-    'no-new': 'off',
-    'no-tabs': 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-console': ['production', 'prod'].includes(process.env.NODE_ENV) ? 'error' : 'off',
+    'no-debugger': ['production', 'prod'].includes(process.env.NODE_ENV) ? 'error' : 'off',
+    'no-explicit-any': 'off'
+  },
+  parserOptions: {
+    parser: '@typescript-eslint/parser'
   }
 }

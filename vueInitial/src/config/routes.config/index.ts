@@ -1,4 +1,5 @@
 import { BasicLayout } from '@/layouts'
+
 export default [
   {
     path: '/',
@@ -8,8 +9,7 @@ export default [
       {
         path: '/home',
         title: '热烈欢迎',
-        component: (resolve) =>
-          import(/* webpackChunkName: "home" */ '@/views/Home.vue').then((module) => resolve(module))
+        component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue')
       }
     ]
   }

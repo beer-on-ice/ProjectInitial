@@ -26,9 +26,9 @@ module.exports = {
       .set('@pages', resolve('src/pages'))
       .set('@utils', resolve('src/utils'))
       .set('@config', resolve('src/config'))
-      .set('@scss', resolve('src/assets/scss'))
+      .set('@plugins', resolve('src/plugins'))
+      .set('@styles', resolve('src/styles'))
       .set('@layouts', resolve('src/layouts'))
-
     // 处理模板
     config.module
       .rule('pug')
@@ -42,7 +42,7 @@ module.exports = {
   css: {
     loaderOptions: {
       stylus: {
-        import: '~@/assets/styles/index.styl'
+        import: '~@/styles/index.styl'
       }
     }
   },
@@ -55,7 +55,7 @@ module.exports = {
   productionSourceMap: !IS_PROD,
   pwa: {},
   devServer: {
-    open: true, // 是否打开浏览器
+    open: false, // 是否打开浏览器
     https: false,
     hotOnly: true, // 热更新
     host: 'localhost',

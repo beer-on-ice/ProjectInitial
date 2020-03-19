@@ -1,20 +1,23 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { StoreOptions } from 'vuex'
 
-import defaultState from './state/state'
-import mutations from './mutations/mutations'
-import getters from './getters/getters'
-import actions from './actions/actions'
+import { RootState } from './types'
+import modules from './modules'
+import defaultState from './state'
+import mutations from './mutations'
+import getters from './getters'
+import actions from './actions'
+
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 
 Vue.use(Vuex)
 
-export default () => {
-  return new Vuex.Store({
-    strict: IS_PROD, // 是否能直接修改state值，而不通过mutations
-    state: defaultState,
-    mutations,
-    actions,
-    getters
-  })
+const store: StoreOptions<RootState> = {
+  strict: IS_PROD, // 是否能直接修改state值，而不通过mutations
+  modules,
+  state: defaultState,
+  mutations,
+  actions,
+  getters
 }
+export default () => new Vuex.Store<RootState>(store)

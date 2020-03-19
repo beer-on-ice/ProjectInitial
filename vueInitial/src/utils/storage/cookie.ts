@@ -4,17 +4,17 @@ import Cookies from 'js-cookie'
 const inFifteenMinutes = new Date(new Date().getTime() + 1 * 60 * 1000)
 
 // 获取cookie
-const getCookie = name => {
+const getCookie = (name: string) => {
   return Cookies.get(name)
 }
 
 // 存储cookie
-const setCookie = (name, val, expires = inFifteenMinutes) => {
+const setCookie = (name: string, val: string, expires = inFifteenMinutes) => {
   return Cookies.set(name, val, expires)
 }
 
 // 删除cookie
-const delCookie = name => {
+const delCookie = (name: string) => {
   return Cookies.remove(name)
 }
 

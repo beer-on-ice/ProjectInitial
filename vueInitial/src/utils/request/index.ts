@@ -1,7 +1,7 @@
-/* eslint-disable */
-import apiList from '@/config/apiList'
+// 挂载到全局
+import apiList from '@/api'
 
-const install = (Vue) => {
+const install = (Vue: any) => {
   if ((<any>install).installed) return
   ;(<any>install).installed = true
 
