@@ -275,13 +275,6 @@ module.exports = {
         @import "@scss/util.scss";
         $src: "${process.env.VUE_APP_OSS_SRC}";
         `
-      },
-      postcss: {
-        plugins: [
-          require('postcss-px2rem')({
-            remUnit: 144
-          })
-        ]
       }
     }
   },
